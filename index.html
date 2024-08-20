@@ -1,35 +1,49 @@
-<!-- HTML, CSS, JAVASCRIPT To-Do list 제작 -->
-<!-- 요구사항 --> 
-<!-- 
-입력 폼
-+ ----------------------------------- +
-|          할 일               | 추가 |
-|------------------------------|      |
-| 알람시간 설정 | 태그 설정    | 버튼 |
-+ ----------------------------------- +
-- 할 일: 텍스트/필수/값 없을시 경고
-- 알람: datetime-local/선택/값이 현 시간보다 이전일 경우 경고
-- 태그: 텍스트/선택/띄어쓰기로 구분/태그 하나가 10자 초과일 경우 경고
-- 추가 버튼: 클릭시 입력 폼의 값이 리스트에 추가/입력 폼 초기화/엔터키로도 내용 추가 가능 
--->
-<!-- 목록
-입력 폼에서 추가된 내용이 표시되는 영역
-리스트 구성
-+ ----------------------------------------------------- +
-| 체크 |          할 일                   | 수정 | 삭제 |
-|      |----------------------------------|      |      |
-| 박스 | 설정한 알람시간 | 설정한 태그    | 버튼 | 버튼 |
-+ ----------------------------------------------------- +
-- 체크박스로 완료 여부를 표시한다.
-- 체크박스를 선택하여 완료/미완료를 토글할 수 있다.
-- 토글된 항목은 취소선이 그어지고, 완료된 항목은 리스트의 하단으로 이동한다.
-- 수정 버튼을 클릭하면 할 일과 알림시간, 태그를 수정할 수 있는 입력 폼이 나타난다.
-- 삭제 버튼을 클릭하면 해당 항목이 삭제된다.
-- 리스트에 추가된 내용은 브라우저를 닫아도 유지된다. (브라우저의 localStorage 사용)
-- 설정한 알람 시간이 되면 알람이 울린다. (브라우저의 Notification API 사용)
-- 각 리스트는 드래그 앤 드롭으로 순서를 변경할 수 있다.
-- 리스트의 항목이 10개 이상일 경우 스크롤이 가능하다.
--->
-<!-- 카운터
-- 미완료된 할 일의 개수를 표시한다.
--->
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>To-Do List</title>
+
+</head>
+
+<body>
+    <header>
+        <h1>할 일 목록</h1>
+    </header>
+
+    <main>
+        <form id="formTodo">
+            <label for="inputTodo">할 일</label>
+            <input type="text" id="inputTodo" required>
+
+            <label for="inputAlarm">알람 시간(선택)</label>
+            <input id="inputAlarm" type="datetime-local">
+
+            <label for="inputTag">태그(선택)</label>
+            <input id="inputTag" type="text" placeholder="띄어쓰기 구분">
+
+            <button id="btnSubmit" type="submit">추가</button>
+
+            <!-- input의 유효성 검사 결과 에러 메시지를 표시합니다. -->
+            <div id="msgError"></div>
+        </form>
+
+        <div class="counter">
+            <span>할 일: 0개</span>
+            <span>완료: 0개</span>
+            <span>미완료: 0개</span>
+        </div>
+
+        <ul id="listTodo">
+            <!-- 자바스크립트 코드로 동적으로 작성됩니다. -->
+        </ul>
+
+
+    </main>
+</body>
+
+</html>
