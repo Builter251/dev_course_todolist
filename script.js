@@ -55,6 +55,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const btnEdit = document.createElement('button');
         // btnEdit.innerHTML = '<span class="material-symbols-outlined">edit</span>';
         btnEdit.textContent = '수정';
+        if (todo.completed) {   // 할 일이 완료된 경우 수정 버튼을 비활성화
+            btnEdit.disabled = true;
+            btnEdit.style.cursor = 'not-allowed';
+        }
         btnEdit.addEventListener('click', () => editTodo(index));   // 수정 버튼을 클릭하면 할 일을 수정할 수 있는 입력 요소로 변경
 
         const btnDelete = document.createElement('button');
@@ -139,6 +143,9 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     const editTodo = (index) => {   // todos 배열에서 해당 인덱스의 할 일을 수정할 수 있는 입력 폼으로 변경 
+        if (todos[index].completed){   // 완료된 할 일은 수정할 수 없도록 함
+            return;
+        }
 
         // 수정 중인 할 일이 있을 때 다른 할 일을 수정할 수 없도록 입력 폼을 비활성화
         inputTodo.disabled = true;
